@@ -1,0 +1,31 @@
+<h1>Edit Question</h1>
+
+<p>
+  Switch to:
+
+  <%= link_to(
+    'Scale Question',
+    new_question_type_path(
+      @question,
+      question: { submittable_type: 'ScaleSubmittable' }
+    )
+  ) %>
+
+  <%= link_to(
+    'Multiple Choice Question',
+    new_question_type_path(
+      @question,
+      question: { submittable_type: 'MultipleChoiceSubmittable' }
+    )
+  ) %>
+
+  <%= link_to(
+    'Open Question',
+    new_question_type_path(
+      @question,
+      question: { submittable_type: 'OpenSubmittable' }
+    )
+  ) %>
+</p>
+
+<%= render 'form', question: @question, url: question_path %>

@@ -1,0 +1,47 @@
+<h1><%= @survey.title %></h1>
+<p>Author: <%= @survey.author.email %></p>
+<p><%= link_to 'Invite', new_survey_invitation_path(@survey) %></p>
+
+<%= render 'summaries/nav', survey: @survey %>
+
+<%= link_to(
+  'Add Multiple Choice Question',
+  new_survey_question_path(
+    @survey,
+    question: { submittable_type: 'MultipleChoiceSubmittable' }
+  )
+) %>
+
+<%= link_to(
+  'Add Open Question',
+  new_survey_question_path(
+    @survey,
+    question: { submittable_type: 'OpenSubmittable' }
+  )
+) %>
+
+<%= link_to(
+  'Add Scale Question',
+  new_survey_question_path(
+    @survey,
+    question: { submittable_type: 'ScaleSubmittable' }
+  )
+) %>
+
+<%= simple_form_for [@survey, @completion] do |form| -%>
+  <ol>
+    <% @questions.each do |question| -%>
+      <li>
+        <%= form.fields_for "answers_attributes[#{question.id}]", Answer.new do |submission_fields| -%>
+          <%= submission_fields.label :text, label: question.title %>
+          <%= render(
+            question.submittable,
+            submission_fields: submission_fields
+          ) %>
+          <%= link_to 'Edit', edit_question_path(question) %>
+        <% end -%>
+      </li>
+    <% end -%>
+  </ol>
+  <%= form.submit 'Submit Answers' %>
+<% end -%>

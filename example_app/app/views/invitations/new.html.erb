@@ -1,0 +1,6 @@
+<%= simple_form_for @survey_inviter, 
+  url: survey_invitations_path(@survey) do |f| %>
+  <%= f.input :message, as: :text %>
+  <%= f.input :recipients, as: :text %>
+  <%= f.button :submit, value: 'Invite' %>
+<% end %>
