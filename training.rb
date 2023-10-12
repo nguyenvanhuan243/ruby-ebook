@@ -61,3 +61,12 @@
 - Aws.
 
 10. Gems.
+
+# Gom commit thành 1
+11. Commits to commit
+git checkout branch
+git log --oneline
+git rebase -i HEAD~15
+sau đó change "pick" thành "s" và update commit message.
+tiếp tục comment giữ lại một message commit.
+git push -f
