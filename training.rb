@@ -8,6 +8,7 @@
 - Concern
 - Caching.
 - Inheritance
+- Enum
 
 2. Controller
 - Concern
